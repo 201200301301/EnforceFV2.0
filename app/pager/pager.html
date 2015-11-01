@@ -1,0 +1,11 @@
+<div class="pull-left">
+    <span><button class="btn btn-primary btn-sm" ng-click="first()">首页</button></span>
+    <span><button class="btn btn-primary btn-sm" ng-click="prev()">上一页</button></span>
+    <span><button class="btn btn-primary btn-sm" ng-click="next()">下一页</button></span>
+    <span><button class="btn btn-primary btn-sm" ng-click="end()">末页</button></span>
+        <span>
+            转到<input type="number" class="" ng-model="p.goToPage"class="">页
+            <button class="btn btn-primary btn-sm" ng-click="go()">GO</button>
+        </span>
+    <span style="margin-right: 0">共{{total}}条记录,当前第{{currentPage}}页,共{{totalPage}}页</span>
+</div>

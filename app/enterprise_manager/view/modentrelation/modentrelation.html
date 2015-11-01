@@ -1,0 +1,42 @@
+<div style="margin-left: 10%">
+    <form>
+        <div>
+            选择关系类型：<select ng-model="item">
+            <option ng-repeat="items in item" value = {{items.type}}>
+                {{items.type}}
+            </option>
+            </select>
+            &nbsp;
+            本方所处位置:<select ng-model="bfposition">
+            <option value="from">From</option>
+            <option value="to">To</option>
+            </select>
+            <button class="btn  btn-primary" ng-click="select()">查询</button>
+        </div>
+        <div class="panel panel-default" style="width: 85%;">
+            <div class="panel-heading"><h5>本企业的企业关系</h5></div>
+            <table class="table" >
+                <thead>
+                <tr >
+                    <th>相关企业ID</th>
+                    <th>相关企业</th>
+                    <th>关系名称</th>
+                    <th>本企业分配给该厂家的内部编号</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="re in relationship">
+                    <td >{{re.enterprise.id}}</td>
+                    <td >{{re.enterprise.mc}}</td>
+                    <td >{{re.gxmc}}</td>
+                    <td >{{re.fromInTo}}</td>
+                    <td ><button class="btn btn-primary" ng-click="modnumber($index)">修改</button>
+                    <td ><button class="btn btn-primary" ng-click="killrelationship($index)">解除关系</button>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+

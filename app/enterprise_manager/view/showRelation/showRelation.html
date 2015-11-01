@@ -1,0 +1,32 @@
+<div style="margin-left: 20%">
+    <form>
+        <div>
+            对方企业ID： <input type="text" ng-model="id">
+            关系类型： <input type="text" ng-model="type">
+            <button class="btn  btn-primary" ng-click="select()">查询</button>
+        </div>
+        <div class="panel panel-default" style="width: 70%;">
+            <div class="panel-heading"><h4>关系展示</h4></div>
+            <table class="table" >
+                <thead>
+                <tr >
+                    <th>关系ID</th>
+                    <th>关系类型</th>
+                    <th>关系状态</th>
+                    <th>from端企业ID</th>
+                    <th>to端企业ID</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in rows">
+                    <td > {{row.id}}</td>
+                    <td >{{row.type}}</td>
+                    <td >{{row.status}}</td>
+                    <td >{{row.fromenterprise.id}}</td>
+                    <td >{{row.toenterprise.id}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>

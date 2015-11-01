@@ -1,0 +1,113 @@
+<div style="margin-left: 20%">
+    <form>
+        <div>
+            用户ID： <input type="text" ng-model="username">
+            <button class="btn  btn-primary" ng-click="select()">查询</button>
+            <!-- 按钮触发模态框 -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">
+                新增用户
+            </button>
+            <!-- Modal -->
+            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">新增用户</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-signin" role="form" style="max-width: 330px;padding: 15px;margin: 0 auto;">
+                                <div class="form-inline">姓名：<input type="text" class="form-control" ng-model="name" placeholder="请输入你的姓名"></div><br>
+                                <div class="form-inline">地址：<input type="text" class="form-control" ng-model="address" placeholder="请输入你的地址"></div><br>
+                                <div class="form-inline">电话：<input type="text" class="form-control" ng-model="phone" placeholder="请输入你的电话"></div><br>
+                                <div class="form-inline">邮箱：<input type="text" class="form-control" ng-model="email" placeholder="请输入你的邮箱"></div><br>
+                                <div class="form-inline">状态：<input type="text" class="form-control" ng-model="status" placeholder="请输入你的状态"></div><br>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn  btn-primary" ng-click="add()">新增</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 模态框（Modal） -->
+        </div>
+        <br>
+        <div ng-include="'pager/pager.html'"></div>
+        <br>
+        <br>
+        <div class="panel panel-default" style="width: 70%;">
+            <div class="panel-heading"><h4>用户管理</h4></div>
+            <table class="table">
+                <thead>
+                <tr >
+                    <th>用户ID</th>
+                    <th>姓名</th>
+                    <th>地址</th>
+                    <th>电话</th>
+                    <th>邮箱</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in rows" ng-model="ID">
+                    <td > <a href="#/showdetail?id={{row.id}}">{{row.id}}{{ID}}</a></td>
+                    <td >{{row.name}}</td>
+                    <td >{{row.address}}</td>
+                    <td >{{row.phone}}</td>
+                    <td >{{row.email}}</td>
+                    <td ><button class="btn btn-primary" ng-click="delete(row.id)">删除</button>
+                        <button class="btn btn-primary " data-toggle="modal" data-target="#myModal" ng-click="showdetail(row.id)">
+                            详情</button></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                &times;
+                            </button>
+                            <h4 class="modal-title" id="ModalLabel">
+                                用户详情
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" role="form" style="width: 70%">
+                                <div class="form-group">
+                                    <div class="col-sm-4 control-label">用户id：</div> <div class="col-sm-8" ng-model="id">{{id}}</div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-4 control-label">姓名：</div><div class="col-sm-8"><input type="text" class="form-control" ng-model="detail.name" value="detail.name"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-4 control-label">地址：</div><div class="col-sm-8"><input type="text" class="form-control" ng-model="detail.address" value="detail.address"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-4 control-label">电话：</div><div class="col-sm-8"><input type="text" class="form-control" ng-model="detail.phone" value="detail.phone"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-4 control-label">邮箱：</div><div class="col-sm-8"><input type="text" class="form-control" ng-model="detail.email" value="detail.email"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-4 control-label">状态：</div><div class="col-sm-8"><input type="text" class="form-control" ng-model="detail.status" value="detail.status"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-4 control-label">创建时间：</div><div class="col-sm-8"><input type="text" class="form-control" ng-model="detail.createTime" value="detail.createTime"></div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-4 control-label">上次修改时间：</div><div class="col-sm-8"><input type="text" class="form-control" ng-model="detail.lastModifyTime" value="detail.lastModifyTime"></div>
+                                </div>
+                            </form>
+                        </div>
+                        <div style="margin-left: 30%">
+                        <button type="submit" class="btn  btn-primary" ng-click="update($event)">修改</button>
+                            </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal -->
+            </div>
+        </div>
+    </form>
+</div>
